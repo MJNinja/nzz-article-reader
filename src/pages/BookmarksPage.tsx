@@ -1,22 +1,18 @@
 import { useBookmarkedArticles } from "@/features/bookmarks/useBookmarkedArticles"
 import { ArticleCard } from "@/components/ArticleCard"
+import LoadingState from "@/components/LoadingState"
+import ErrorState from "@/components/ErrorState"
 
 function BookmarksPage() {
 	const { data, isLoading, isError } =
 		useBookmarkedArticles()
 
 	if (isLoading) {
-		return (
-		<div className="p-6">Loading bookmarks...</div>
-		)
+		return <LoadingState text="Loading bookmarks..." />
 	}
 
 	if (isError) {
-		return (
-		<div className="p-6 text-red-500">
-			Failed to load bookmarks
-		</div>
-		)
+		return <ErrorState text="Failed to load bookmarks" />
 	}
 
 	if (!data || data.length === 0) {

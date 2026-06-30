@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { useParams, Link } from "react-router"
 import { ArticleCard } from "@/components/ArticleCard"
-import { useArticle } from "@/features/article/useArticle"
+import { useArticle } from "@/features/articles/useArticle"
 import { isBookmarked, toggleBookmark } from "@/features/bookmarks/bookmarkStore"
-import { useRelatedArticles } from "@/features/article/useRelatedArticles"
+import { useRelatedArticles } from "@/features/articles/useRelatedArticles"
+import LoadingState from "@/components/LoadingState"
+import ErrorState from "@/components/ErrorState"
 
 function ArticlePage() {
 	const { id } = useParams()
@@ -18,11 +20,11 @@ function ArticlePage() {
 	const {data: related, isLoading: relatedLoading} = useRelatedArticles(topicIds, article?.id ?? "")
 
 	if (isLoading) {
-		return <div className="p-6">Loading article...</div>
+		return <LoadingState text="Loading article..." />
 	}
 
 	if (isError || !article) {
-		return <div className="p-6 text-red-500">Article not found</div>
+		return <ErrorState text="Article not found" />
 	}
 
 	function handleBookmark() {

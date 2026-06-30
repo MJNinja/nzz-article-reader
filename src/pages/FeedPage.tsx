@@ -19,7 +19,7 @@ const ALL_TOPICS = [
 function FeedPage() {
 	const { topicList, setTopics } = useTopicsFromUrl()
 
-	const {articles, hasMore, loadMore, isLoading, isFetching, isLoadingMore, isError, retry} = useFeed(topicList)
+	const {articles, hasMore, loadMore, isLoading, isLoadingMore, isError, retry} = useFeed(topicList)
 
 	function handleTopicToggle(topicId: string) {
 		let updatedTopics = [...topicList]
@@ -64,44 +64,44 @@ function FeedPage() {
 		{/* ERROR */}
 		{isError && (
 			<div className="border rounded p-4 bg-red-50 mb-6">
-			<p className="text-red-600 mb-3">
-				Failed to load articles.
-			</p>
-			<Button onClick={() => retry()}>Retry</Button>
+				<p className="text-red-600 mb-3">
+					Failed to load articles.
+				</p>
+				<Button onClick={() => retry()}>Retry</Button>
 			</div>
 		)}
 
 		{/* SKELETON (initial OR topic change) */}
 		{(isLoading) && (
 			<div className="space-y-4">
-			{Array.from({ length: 5 }).map((_, i) => (
-				<ArticleCardSkeleton key={i} />
-			))}
+				{Array.from({ length: 5 }).map((_, i) => (
+					<ArticleCardSkeleton key={i} />
+				))}
 			</div>
 		)}
 
 		{/* ARTICLES */}
 		{!isLoading && (
 			<div className="space-y-4">
-			{articles.map((article) => (
-				<ArticleCard key={article.id} article={article} />
-			))}
+				{articles.map((article) => (
+					<ArticleCard key={article.id} article={article} />
+				))}
 			</div>
 		)}
 
 		{/* LOAD MORE */}
 		{hasMore && (
 			<div className="mt-8 flex justify-center">
-			<Button onClick={() => loadMore()} disabled={isLoadingMore}>
-				{isLoadingMore ? "Loading..." : "Load more"}
-			</Button>
+				<Button onClick={() => loadMore()} disabled={isLoadingMore}>
+					{isLoadingMore ? "Loading..." : "Load more"}
+				</Button>
 			</div>
 		)}
 
 		{/* EMPTY */}
 		{!isLoading && articles.length === 0 && !isError && (
 			<div className="text-center text-gray-500 mt-10">
-			No articles found.
+				No articles found.
 			</div>
 		)}
 		</div>

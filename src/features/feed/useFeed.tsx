@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query"
-import { getArticles } from "@/api/articles"
+import { getArticles } from "@/features/articles/articles"
 import type { Article } from "@/api/mockApi"
 
 type FeedResponse = {
