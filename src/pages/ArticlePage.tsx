@@ -45,11 +45,12 @@ function ArticlePage() {
 	return (
 		<>
 			<title>{pageTitle}</title>
-    		<meta name="description" content={pageDescription} />
+			<meta name="description" content={pageDescription} />
+
 			<div className="max-w-2xl mx-auto p-4">
 
 				{/* BACK */}
-				<Link to="/" className="text-sm text-blue-600 rounded-xs focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
+				<Link to="/" className="text-sm text-blue-600 rounded-xs focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2" aria-label="Go back to the homepage">
 					← Back
 				</Link>
 
@@ -59,7 +60,7 @@ function ArticlePage() {
 				</h1>
 
 				{/* META */}
-				<p className="text-muted-foreground mt-2">
+				<p className="text-muted-foreground mt-2" aria-label={`Written by ${article.author}`}>
 					{article.author}
 				</p>
 
@@ -74,29 +75,28 @@ function ArticlePage() {
 				)}
 
 				{/* LEAD */}
-				<p className="text-lg mt-4 text-foreground">
+				<p className="text-lg mt-4 text-foreground" aria-describedby="article-body">
 					{article.lead}
 				</p>
 
 				{/* BODY */}
-				<div className="mt-6 whitespace-pre-line text-sm text-foreground">
+				<div id="article-body" className="mt-6 whitespace-pre-line text-sm text-foreground" role="article body" aria-label="Article body content">
 					{article.body}
 				</div>
 
 				{/* ACTIONS */}
-				<div className="flex gap-3 mt-6">
+				<div className="flex gap-3 mt-6" aria-label="Article actions">
 					<button
 						onClick={handleBookmark}
-						className="border border-border px-3 py-1 rounded bg-background hover:bg-muted cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
-						"
+						className="border border-border px-3 py-1 rounded bg-background hover:bg-muted cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" aria-label="Bookmark article" aria-pressed={bookmarked ? "true" : "false"}
 					>
 						{bookmarked ? "Remove Bookmark" : "Bookmark"}
 					</button>
 
 					<button
 						onClick={handleShare}
-						className=" border border-border px-3 py-1 rounded bg-background hover:bg-muted cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
-						"
+						className="border border-border px-3 py-1 rounded bg-background hover:bg-muted cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+						aria-label="Copy article link to clipboard"
 					>
 						Share
 					</button>
@@ -104,23 +104,24 @@ function ArticlePage() {
 
 				{/* RELATED ARTICLES */}
 				<div className="mt-10">
-					<h2 className="text-lg font-semibold mb-3 text-foreground">
+					<h2 id="related-articles" className="text-lg font-semibold mb-3 text-foreground">
 						Related Articles
 					</h2>
+                    <p className="sr-only" aria-labelledby="related-articles">List of articles related to this topic.</p>
 
 					{relatedLoading && (
-						<div className="text-sm text-muted-foreground">
+						<div role="status" aria-live="polite" className="text-sm text-muted-foreground">
 							Loading related articles...
 						</div>
 					)}
 
 					{!relatedLoading && related?.length === 0 && (
-						<div className="text-sm text-muted-foreground">
-							No related articles found
+						<div role="alert" className="text-sm text-muted-foreground">
+							No related articles found.
 						</div>
 					)}
 
-					<div className="space-y-3">
+					<div className="space-y-3" role="list">
 						{related?.map((article) => (
 							<ArticleCard key={article.id} article={article} />
 						))}
