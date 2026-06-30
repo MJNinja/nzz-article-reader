@@ -1,86 +1,112 @@
 import { useState } from "react"
-import { useArticles } from "@/hooks/useArticles"
+import { useFeed } from "@/features/feed/useFeed"
 import { useTopicsFromUrl } from "@/hooks/useTopicsFromUrl"
+
 import { ArticleCard } from "@/components/ArticleCard"
+import { ArticleCardSkeleton } from "@/components/ArticleCardSkeleton"
+import { Button } from "@/components/ui/button"
+
+const ALL_TOPICS = [
+  { id: "politik", label: "Politik" },
+  { id: "wirtschaft", label: "Wirtschaft" },
+  { id: "feuilleton", label: "Feuilleton" },
+  { id: "sport", label: "Sport" },
+  { id: "wissenschaft", label: "Wissenschaft" },
+  { id: "meinung", label: "Meinung" },
+  { id: "international", label: "International" },
+  { id: "zuerich", label: "Zürich" },
+]
 
 function FeedPage() {
-	const [page, setPage] = useState(0)
-	
 	const { topicList, setTopics } = useTopicsFromUrl()
 
-	const { data, isLoading, error } = useArticles(page, topicList)
+	const {articles, hasMore, loadMore, isLoading, isFetching, isLoadingMore, isError, retry} = useFeed(topicList)
 
-	//console.log(data);
+	function handleTopicToggle(topicId: string) {
+		let updatedTopics = [...topicList]
 
-	if (isLoading) return <div>Loading...</div>
+		if (updatedTopics.includes(topicId)) {
+			updatedTopics = updatedTopics.filter((t) => t !== topicId)
+		} else {
+			updatedTopics.push(topicId)
+		}
 
-	if (error) return <div>Error: {error.message}</div>
-	//if (error) return <div>Something went wrong</div> // This the one AI supplied
-	
+		setTopics(updatedTopics)
+	}
+
 	return (
-	<div className="max-w-2xl mx-auto p-4">
-		<h1 className="text-3xl font-bold mb-4">Articles</h1>
+		<div className="max-w-2xl mx-auto p-4">
 
-		{/* Topic filters (simple version for now) */}
-		<div className="flex gap-2 mb-4">
-		{["sport", "politik", "wirtschaft"].map((t) => {
-			const active = topicList.includes(t)
+		<h1 className="text-3xl font-bold mb-6">
+			Articles
+		</h1>
+
+		{/* TOPICS */}
+		<div className="flex flex-wrap gap-2 mb-6">
+			{ALL_TOPICS.map((topic) => {
+			const active = topicList.includes(topic.id)
 
 			return (
-			<button
-				key={t}
-				onClick={() => {
-					if (active) {
-						setTopics(topicList.filter((x) => x !== t))
-					} else {
-						setTopics([...topicList, t])
-					}
-					setPage(0)
-				}}
-				className={`px-3 py-1 border rounded hover:bg-black hover:text-white ${active ? "bg-black text-white" : ""}`}
-			>
-				{t}
-			</button>
+				<button
+				key={topic.id}
+				onClick={() => handleTopicToggle(topic.id)}
+				className={`px-3 py-1 rounded border text-sm transition ${
+					active
+					? "bg-black text-white"
+					: "bg-white hover:bg-gray-100"
+				}`}
+				>
+				{topic.label}
+				</button>
 			)
-		})}
+			})}
 		</div>
 
-		{/* Articles */}
-		<div className="space-y-4">
-			{data?.data.map((article) => (
+		{/* ERROR */}
+		{isError && (
+			<div className="border rounded p-4 bg-red-50 mb-6">
+			<p className="text-red-600 mb-3">
+				Failed to load articles.
+			</p>
+			<Button onClick={() => retry()}>Retry</Button>
+			</div>
+		)}
+
+		{/* SKELETON (initial OR topic change) */}
+		{(isLoading || isFetching) && (
+			<div className="space-y-4">
+			{Array.from({ length: 5 }).map((_, i) => (
+				<ArticleCardSkeleton key={i} />
+			))}
+			</div>
+		)}
+
+		{/* ARTICLES */}
+		{!isLoading && (
+			<div className="space-y-4">
+			{articles.map((article) => (
 				<ArticleCard key={article.id} article={article} />
 			))}
-		</div>
+			</div>
+		)}
 
-		{/* Pagination */}
-		<div className="mt-6 flex justify-center">
-			{data?.meta.nextPage !== null && (
-				<button
-				onClick={() => setPage((p) => p + 1)}
-				className="px-4 py-2 border rounded"
-				>
-					Load more
-				</button>
-			)}
+		{/* LOAD MORE */}
+		{hasMore && (
+			<div className="mt-8 flex justify-center">
+			<Button onClick={() => loadMore()} disabled={isLoadingMore}>
+				{isLoadingMore ? "Loading..." : "Load more"}
+			</Button>
+			</div>
+		)}
+
+		{/* EMPTY */}
+		{!isLoading && articles.length === 0 && !isError && (
+			<div className="text-center text-gray-500 mt-10">
+			No articles found.
+			</div>
+		)}
 		</div>
-	</div>
 	)
 }
 
 export default FeedPage
-
-
-/*
-Issues:
-- Should show a list of all topics that can be searched for and not just this short list ["sport", "politik", "wirtschaft"].
-- Load more not updating page URL with query params
-- Load more should just show more articles below the existing ones
-- Each card shows:
-    Title
-    Lead
-    Hero image (if imageUrl)
-    Author
-    Relative publish time (e.g. 2h ago)
-    Topic chips
-    Premium badge (if premium: true)
-*/

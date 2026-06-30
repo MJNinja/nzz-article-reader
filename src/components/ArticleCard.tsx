@@ -27,6 +27,8 @@ export function ArticleCard({ article }: Props) {
       <p className="text-sm text-gray-400 mt-2">
         {article.author}
       </p>
+
+	  {/* TODO: Update to show all the needed article information */}
     </Link>
   )
 }

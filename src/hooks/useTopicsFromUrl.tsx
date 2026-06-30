@@ -8,13 +8,15 @@ export function useTopicsFromUrl() {
   const topicList = topics ? topics.split(",") : []
 
   function setTopics(newTopics: string[]) {
-    if (newTopics.length === 0) {
+	const normalized = newTopics.map((t) => t.toLowerCase())
+
+    if (normalized.length === 0) {
       params.delete("topics")
     } else {
-      params.set("topics", newTopics.join(","))
+      params.set("topics", normalized.join(","))
     }
 
-    setParams(params)
+    setParams(params, { replace: true })
   }
 
   return { topicList, setTopics }
