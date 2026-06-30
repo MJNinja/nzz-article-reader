@@ -34,6 +34,9 @@ export function useFeed(topics: string[]) {
 		}
 	}
 
+	const isInitialLoading = query.isLoading && query.data === undefined
+	const isBackgroundFetching = query.isFetching && !isInitialLoading
+
 	return {
 		articles,
 
@@ -41,9 +44,11 @@ export function useFeed(topics: string[]) {
 
 		loadMore: query.fetchNextPage,
 
-		isLoading: query.isLoading,
+		//isLoading: query.isLoading,
+		isLoading: isInitialLoading,
 
-		isFetching: query.isFetching,
+		//isFetching: query.isFetching,
+		isFetching: isBackgroundFetching,
 
 		isLoadingMore: query.isFetchingNextPage,
 

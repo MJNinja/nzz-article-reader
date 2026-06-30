@@ -49,7 +49,7 @@ function FeedPage() {
 				<button
 				key={topic.id}
 				onClick={() => handleTopicToggle(topic.id)}
-				className={`px-3 py-1 rounded border text-sm transition ${
+				className={`px-3 py-1 rounded border text-sm transition cursor-pointer ${
 					active
 					? "bg-black text-white"
 					: "bg-white hover:bg-gray-100"
@@ -72,7 +72,7 @@ function FeedPage() {
 		)}
 
 		{/* SKELETON (initial OR topic change) */}
-		{(isLoading || isFetching) && (
+		{(isLoading) && (
 			<div className="space-y-4">
 			{Array.from({ length: 5 }).map((_, i) => (
 				<ArticleCardSkeleton key={i} />
