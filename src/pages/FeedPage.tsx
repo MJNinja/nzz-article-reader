@@ -13,7 +13,7 @@ const ALL_TOPICS = [
 	{ id: "wissenschaft", label: "Wissenschaft" },
 	{ id: "meinung", label: "Meinung" },
 	{ id: "international", label: "International" },
-	{ id: "zuerich", label: "Zürich" },
+	{ id: "zürich", label: "Zürich" },
 ]
 
 function FeedPage() {
