@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useFeed } from "@/features/feed/useFeed"
 import { useTopicsFromUrl } from "@/hooks/useTopicsFromUrl"
 
