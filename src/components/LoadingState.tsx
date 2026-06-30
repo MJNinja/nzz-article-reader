@@ -7,7 +7,7 @@ type Props = {
 function LoadingState({ text }: Props) {
   return (
 	<>
-		<div className="p-6">{text}</div>
+		<div className="text-gray-500 p-6">{text}</div>
 	</>
   )
 }
