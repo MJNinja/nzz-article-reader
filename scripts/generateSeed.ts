@@ -36,7 +36,7 @@ function createArticle(id: number) {
       name: t,
     })),
     premium: faker.datatype.boolean(0.3),
-    imageUrl: `https://picsum.photos/seed/${id}/1280/720`,
+    imageUrl: `https://picsum.photos/seed/${id}/690/220.webp`,
   }
 }
 

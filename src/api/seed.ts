@@ -13,7 +13,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/1/1280/720"
+    "imageUrl": "https://picsum.photos/seed/1/720/300.webp"
   },
   {
     "id": "2",
@@ -29,7 +29,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/2/1280/720"
+    "imageUrl": "https://picsum.photos/seed/2/720/300.webp"
   },
   {
     "id": "3",
@@ -45,7 +45,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/3/1280/720"
+    "imageUrl": "https://picsum.photos/seed/3/720/300.webp"
   },
   {
     "id": "4",
@@ -65,7 +65,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/4/1280/720"
+    "imageUrl": "https://picsum.photos/seed/4/720/300.webp"
   },
   {
     "id": "5",
@@ -89,7 +89,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/5/1280/720"
+    "imageUrl": "https://picsum.photos/seed/5/720/300.webp"
   },
   {
     "id": "6",
@@ -105,7 +105,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/6/1280/720"
+    "imageUrl": "https://picsum.photos/seed/6/720/300.webp"
   },
   {
     "id": "7",
@@ -121,7 +121,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/7/1280/720"
+    "imageUrl": "https://picsum.photos/seed/7/720/300.webp"
   },
   {
     "id": "8",
@@ -137,7 +137,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/8/1280/720"
+    "imageUrl": "https://picsum.photos/seed/8/720/300.webp"
   },
   {
     "id": "9",
@@ -153,7 +153,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/9/1280/720"
+    "imageUrl": "https://picsum.photos/seed/9/720/300.webp"
   },
   {
     "id": "10",
@@ -169,7 +169,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/10/1280/720"
+    "imageUrl": "https://picsum.photos/seed/10/720/300.webp"
   },
   {
     "id": "11",
@@ -189,7 +189,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/11/1280/720"
+    "imageUrl": "https://picsum.photos/seed/11/720/300.webp"
   },
   {
     "id": "12",
@@ -209,7 +209,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/12/1280/720"
+    "imageUrl": "https://picsum.photos/seed/12/720/300.webp"
   },
   {
     "id": "13",
@@ -233,7 +233,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/13/1280/720"
+    "imageUrl": "https://picsum.photos/seed/13/720/300.webp"
   },
   {
     "id": "14",
@@ -257,7 +257,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/14/1280/720"
+    "imageUrl": "https://picsum.photos/seed/14/720/300.webp"
   },
   {
     "id": "15",
@@ -281,7 +281,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/15/1280/720"
+    "imageUrl": "https://picsum.photos/seed/15/720/300.webp"
   },
   {
     "id": "16",
@@ -305,7 +305,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/16/1280/720"
+    "imageUrl": "https://picsum.photos/seed/16/720/300.webp"
   },
   {
     "id": "17",
@@ -329,7 +329,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/17/1280/720"
+    "imageUrl": "https://picsum.photos/seed/17/720/300.webp"
   },
   {
     "id": "18",
@@ -353,7 +353,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/18/1280/720"
+    "imageUrl": "https://picsum.photos/seed/18/720/300.webp"
   },
   {
     "id": "19",
@@ -369,7 +369,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/19/1280/720"
+    "imageUrl": "https://picsum.photos/seed/19/720/300.webp"
   },
   {
     "id": "20",
@@ -385,7 +385,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/20/1280/720"
+    "imageUrl": "https://picsum.photos/seed/20/720/300.webp"
   },
   {
     "id": "21",
@@ -409,7 +409,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/21/1280/720"
+    "imageUrl": "https://picsum.photos/seed/21/720/300.webp"
   },
   {
     "id": "22",
@@ -425,7 +425,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/22/1280/720"
+    "imageUrl": "https://picsum.photos/seed/22/720/300.webp"
   },
   {
     "id": "23",
@@ -441,7 +441,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/23/1280/720"
+    "imageUrl": "https://picsum.photos/seed/23/720/300.webp"
   },
   {
     "id": "24",
@@ -461,7 +461,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/24/1280/720"
+    "imageUrl": "https://picsum.photos/seed/24/720/300.webp"
   },
   {
     "id": "25",
@@ -485,7 +485,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/25/1280/720"
+    "imageUrl": "https://picsum.photos/seed/25/720/300.webp"
   },
   {
     "id": "26",
@@ -501,7 +501,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/26/1280/720"
+    "imageUrl": "https://picsum.photos/seed/26/720/300.webp"
   },
   {
     "id": "27",
@@ -521,7 +521,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/27/1280/720"
+    "imageUrl": "https://picsum.photos/seed/27/720/300.webp"
   },
   {
     "id": "28",
@@ -537,7 +537,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/28/1280/720"
+    "imageUrl": "https://picsum.photos/seed/28/720/300.webp"
   },
   {
     "id": "29",
@@ -553,7 +553,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/29/1280/720"
+    "imageUrl": "https://picsum.photos/seed/29/720/300.webp"
   },
   {
     "id": "30",
@@ -569,7 +569,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/30/1280/720"
+    "imageUrl": "https://picsum.photos/seed/30/720/300.webp"
   },
   {
     "id": "31",
@@ -589,7 +589,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/31/1280/720"
+    "imageUrl": "https://picsum.photos/seed/31/720/300.webp"
   },
   {
     "id": "32",
@@ -613,7 +613,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/32/1280/720"
+    "imageUrl": "https://picsum.photos/seed/32/720/300.webp"
   },
   {
     "id": "33",
@@ -637,7 +637,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/33/1280/720"
+    "imageUrl": "https://picsum.photos/seed/33/720/300.webp"
   },
   {
     "id": "34",
@@ -657,7 +657,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/34/1280/720"
+    "imageUrl": "https://picsum.photos/seed/34/720/300.webp"
   },
   {
     "id": "35",
@@ -673,7 +673,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/35/1280/720"
+    "imageUrl": "https://picsum.photos/seed/35/720/300.webp"
   },
   {
     "id": "36",
@@ -697,7 +697,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/36/1280/720"
+    "imageUrl": "https://picsum.photos/seed/36/720/300.webp"
   },
   {
     "id": "37",
@@ -721,7 +721,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/37/1280/720"
+    "imageUrl": "https://picsum.photos/seed/37/720/300.webp"
   },
   {
     "id": "38",
@@ -741,7 +741,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/38/1280/720"
+    "imageUrl": "https://picsum.photos/seed/38/720/300.webp"
   },
   {
     "id": "39",
@@ -757,7 +757,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/39/1280/720"
+    "imageUrl": "https://picsum.photos/seed/39/720/300.webp"
   },
   {
     "id": "40",
@@ -777,7 +777,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/40/1280/720"
+    "imageUrl": "https://picsum.photos/seed/40/720/300.webp"
   },
   {
     "id": "41",
@@ -793,7 +793,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/41/1280/720"
+    "imageUrl": "https://picsum.photos/seed/41/720/300.webp"
   },
   {
     "id": "42",
@@ -809,7 +809,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/42/1280/720"
+    "imageUrl": "https://picsum.photos/seed/42/720/300.webp"
   },
   {
     "id": "43",
@@ -825,7 +825,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/43/1280/720"
+    "imageUrl": "https://picsum.photos/seed/43/720/300.webp"
   },
   {
     "id": "44",
@@ -841,7 +841,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/44/1280/720"
+    "imageUrl": "https://picsum.photos/seed/44/720/300.webp"
   },
   {
     "id": "45",
@@ -857,7 +857,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/45/1280/720"
+    "imageUrl": "https://picsum.photos/seed/45/720/300.webp"
   },
   {
     "id": "46",
@@ -873,7 +873,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/46/1280/720"
+    "imageUrl": "https://picsum.photos/seed/46/720/300.webp"
   },
   {
     "id": "47",
@@ -893,7 +893,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/47/1280/720"
+    "imageUrl": "https://picsum.photos/seed/47/720/300.webp"
   },
   {
     "id": "48",
@@ -913,7 +913,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/48/1280/720"
+    "imageUrl": "https://picsum.photos/seed/48/720/300.webp"
   },
   {
     "id": "49",
@@ -937,7 +937,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/49/1280/720"
+    "imageUrl": "https://picsum.photos/seed/49/720/300.webp"
   },
   {
     "id": "50",
@@ -961,7 +961,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/50/1280/720"
+    "imageUrl": "https://picsum.photos/seed/50/720/300.webp"
   },
   {
     "id": "51",
@@ -985,7 +985,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/51/1280/720"
+    "imageUrl": "https://picsum.photos/seed/51/720/300.webp"
   },
   {
     "id": "52",
@@ -1001,7 +1001,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/52/1280/720"
+    "imageUrl": "https://picsum.photos/seed/52/720/300.webp"
   },
   {
     "id": "53",
@@ -1025,7 +1025,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/53/1280/720"
+    "imageUrl": "https://picsum.photos/seed/53/720/300.webp"
   },
   {
     "id": "54",
@@ -1049,7 +1049,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/54/1280/720"
+    "imageUrl": "https://picsum.photos/seed/54/720/300.webp"
   },
   {
     "id": "55",
@@ -1073,7 +1073,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/55/1280/720"
+    "imageUrl": "https://picsum.photos/seed/55/720/300.webp"
   },
   {
     "id": "56",
@@ -1093,7 +1093,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/56/1280/720"
+    "imageUrl": "https://picsum.photos/seed/56/720/300.webp"
   },
   {
     "id": "57",
@@ -1109,7 +1109,7 @@ export const ARTICLES = [
       }
     ],
     "premium": true,
-    "imageUrl": "https://picsum.photos/seed/57/1280/720"
+    "imageUrl": "https://picsum.photos/seed/57/720/300.webp"
   },
   {
     "id": "58",
@@ -1129,7 +1129,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/58/1280/720"
+    "imageUrl": "https://picsum.photos/seed/58/720/300.webp"
   },
   {
     "id": "59",
@@ -1149,7 +1149,7 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/59/1280/720"
+    "imageUrl": "https://picsum.photos/seed/59/720/300.webp"
   },
   {
     "id": "60",
@@ -1173,6 +1173,6 @@ export const ARTICLES = [
       }
     ],
     "premium": false,
-    "imageUrl": "https://picsum.photos/seed/60/1280/720"
+    "imageUrl": "https://picsum.photos/seed/60/720/300.webp"
   }
 ]

@@ -49,7 +49,7 @@ function FeedPage() {
 				<button
 				key={topic.id}
 				onClick={() => handleTopicToggle(topic.id)}
-				className={`px-3 py-1 rounded border text-sm transition cursor-pointer ${
+				className={`px-3 py-1 rounded border text-sm transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
 					active
 					? "bg-black text-white"
 					: "bg-white hover:bg-gray-100"

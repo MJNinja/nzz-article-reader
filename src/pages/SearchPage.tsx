@@ -29,11 +29,15 @@ function SearchPage() {
 			</h1>
 
 			{/* INPUT */}
+			<label className="sr-only" htmlFor="search">
+				Search articles
+			</label>
 			<input
+				id="search"
 				value={inputValue}
 				onChange={(e) => handleChange(e.target.value)}
 				placeholder="Search articles..."
-				className="w-full border rounded p-2 mb-4"
+				className="w-full border rounded p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
 			/>
 
 			{/* LOADING */}

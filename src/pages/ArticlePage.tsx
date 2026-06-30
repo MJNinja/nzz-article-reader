@@ -43,7 +43,7 @@ function ArticlePage() {
 		<div className="max-w-2xl mx-auto p-4">
 
 			{/* BACK */}
-			<Link to="/" className="text-sm text-blue-600">
+			<Link to="/" className="text-sm text-blue-600 rounded-xs focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
 				← Back
 			</Link>
 
@@ -61,6 +61,8 @@ function ArticlePage() {
 			{article.imageUrl && (
 				<img
 				src={article.imageUrl}
+				fetchPriority="high"
+				alt={article.title}
 				className="w-full mt-4 rounded"
 				/>
 			)}
@@ -79,14 +81,14 @@ function ArticlePage() {
 			<div className="flex gap-3 mt-6">
 				<button
 				onClick={handleBookmark}
-				className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer"
+				className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
 				>
 					{bookmarked ? "Remove Bookmark" : "Bookmark"}
 				</button>
 
 				<button
 				onClick={handleShare}
-				className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer"
+				className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
 				>
 					Share
 				</button>

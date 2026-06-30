@@ -1,7 +1,7 @@
 import { NavLink } from "react-router"
 
 export function Navigation() {
-	const base = "px-3 py-2 text-sm rounded transition"
+	const base = "px-3 py-2 text-sm rounded transition focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
 
 	const active = "bg-black text-white"
 
