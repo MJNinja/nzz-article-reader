@@ -23,23 +23,31 @@ function BookmarksPage() {
 		)
 	}
 
+	const pageTitle = "Bookmarks | NZZ Reader"
+	const pageDescription = "View all your bookmarked NZZ articles."
+
 	return (
-		<div className="max-w-2xl mx-auto p-4">
+		<>
+			<title>{pageTitle}</title>
+    		<meta name="description" content={pageDescription} />
+			
+			<div className="max-w-2xl mx-auto p-4">
 
-		<h1 className="text-2xl font-bold mb-4">
-			Bookmarks
-		</h1>
+				<h1 className="text-2xl font-bold mb-4">
+					Bookmarks
+				</h1>
 
-		<div className="space-y-4">
-			{data.map((article) => (
-				<ArticleCard
-					key={article.id}
-					article={article}
-				/>
-			))}
-		</div>
+				<div className="space-y-4">
+					{data.map((article) => (
+						<ArticleCard
+							key={article.id}
+							article={article}
+						/>
+					))}
+				</div>
 
-		</div>
+			</div>
+		</>
 	)
 }
 

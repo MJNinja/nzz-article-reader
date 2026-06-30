@@ -39,90 +39,97 @@ function ArticlePage() {
 		alert("Link copied") // TODO: Make it into a nice looking popup or HTML dialog
 	}
 
+	const pageTitle = article ? `${article.title} | NZZ Reader` : "Article | NZZ Reader"
+	const pageDescription = article?.lead ?? "Read the latest article from NZZ Reader."
+
 	return (
-		<div className="max-w-2xl mx-auto p-4">
+		<>
+			<title>{pageTitle}</title>
+    		<meta name="description" content={pageDescription} />
+			<div className="max-w-2xl mx-auto p-4">
 
-			{/* BACK */}
-			<Link to="/" className="text-sm text-blue-600 rounded-xs focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
-				← Back
-			</Link>
+				{/* BACK */}
+				<Link to="/" className="text-sm text-blue-600 rounded-xs focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
+					← Back
+				</Link>
 
-			{/* TITLE */}
-			<h1 className="text-3xl font-bold mt-4">
-				{article.title}
-			</h1>
+				{/* TITLE */}
+				<h1 className="text-3xl font-bold mt-4">
+					{article.title}
+				</h1>
 
-			{/* META */}
-			<p className="text-gray-500 mt-2">
-				{article.author}
-			</p>
+				{/* META */}
+				<p className="text-gray-500 mt-2">
+					{article.author}
+				</p>
 
-			{/* IMAGE */}
-			{article.imageUrl && (
-				<img
-				src={article.imageUrl}
-				fetchPriority="high"
-				alt={article.title}
-				className="w-full mt-4 rounded"
-				/>
-			)}
-
-			{/* LEAD */}
-			<p className="text-lg mt-4">
-				{article.lead}
-			</p>
-
-			{/* BODY */}
-			<div className="mt-6 whitespace-pre-line text-gray-800">
-				{article.body}
-			</div>
-
-			{/* ACTIONS */}
-			<div className="flex gap-3 mt-6">
-				<button
-				onClick={handleBookmark}
-				className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-				>
-					{bookmarked ? "Remove Bookmark" : "Bookmark"}
-				</button>
-
-				<button
-				onClick={handleShare}
-				className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-				>
-					Share
-				</button>
-			</div>
-
-			{/* RELATED ARTICLES */}
-			<div className="mt-10">
-				<h2 className="text-lg font-semibold mb-3">
-					Related Articles
-				</h2>
-
-				{relatedLoading && (
-					<div className="text-sm text-gray-500">
-					Loading related articles...
-					</div>
+				{/* IMAGE */}
+				{article.imageUrl && (
+					<img
+					src={article.imageUrl}
+					fetchPriority="high"
+					alt={article.title}
+					className="w-full mt-4 rounded"
+					/>
 				)}
 
-				{!relatedLoading && related?.length === 0 && (
-					<div className="text-sm text-gray-500">
-					No related articles found
-					</div>
-				)}
+				{/* LEAD */}
+				<p className="text-lg mt-4">
+					{article.lead}
+				</p>
 
-				<div className="space-y-3">
-					{related?.map((article) => (
-						<ArticleCard
-							key={article.id}
-							article={article}
-						/>
-					))}
+				{/* BODY */}
+				<div className="mt-6 whitespace-pre-line text-gray-800">
+					{article.body}
 				</div>
-			</div>
 
-		</div>
+				{/* ACTIONS */}
+				<div className="flex gap-3 mt-6">
+					<button
+					onClick={handleBookmark}
+					className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+					>
+						{bookmarked ? "Remove Bookmark" : "Bookmark"}
+					</button>
+
+					<button
+					onClick={handleShare}
+					className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+					>
+						Share
+					</button>
+				</div>
+
+				{/* RELATED ARTICLES */}
+				<div className="mt-10">
+					<h2 className="text-lg font-semibold mb-3">
+						Related Articles
+					</h2>
+
+					{relatedLoading && (
+						<div className="text-sm text-gray-500">
+						Loading related articles...
+						</div>
+					)}
+
+					{!relatedLoading && related?.length === 0 && (
+						<div className="text-sm text-gray-500">
+						No related articles found
+						</div>
+					)}
+
+					<div className="space-y-3">
+						{related?.map((article) => (
+							<ArticleCard
+								key={article.id}
+								article={article}
+							/>
+						))}
+					</div>
+				</div>
+
+			</div>
+		</>
 	)
 }
 
