@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useParams, Link } from "react-router"
+import { ArticleCard } from "@/components/ArticleCard"
 import { useArticle } from "@/features/article/useArticle"
 import { isBookmarked, toggleBookmark } from "@/features/bookmarks/bookmarkStore"
 import { useRelatedArticles } from "@/features/article/useRelatedArticles"
@@ -108,21 +109,12 @@ function ArticlePage() {
 				)}
 
 				<div className="space-y-3">
-					{related?.map((item) => (
-					<Link
-					key={item.id}
-					to={`/article/${item.id}`}
-					className="block border rounded p-3 hover:bg-gray-50 transition"
-					>
-						<div className="font-medium">
-							{item.title}
-						</div>
-
-						<div className="text-sm text-gray-500">
-							{item.lead}
-						</div>
-					</Link>
-				))}
+					{related?.map((article) => (
+						<ArticleCard
+							key={article.id}
+							article={article}
+						/>
+					))}
 				</div>
 			</div>
 

@@ -1,5 +1,5 @@
-import { Link } from "react-router"
 import { useBookmarkedArticles } from "@/features/bookmarks/useBookmarkedArticles"
+import { ArticleCard } from "@/components/ArticleCard"
 
 function BookmarksPage() {
 	const { data, isLoading, isError } =
@@ -36,26 +36,10 @@ function BookmarksPage() {
 
 		<div className="space-y-4">
 			{data.map((article) => (
-			<Link
-				key={article.id}
-				to={`/article/${article.id}`}
-				className="block border rounded p-4 hover:bg-gray-50 transition"
-			>
-				<h2 className="font-semibold text-lg">
-				{article.title}
-				</h2>
-
-				<p className="text-gray-600">
-				{article.lead}
-				</p>
-
-				<p className="text-xs text-gray-400 mt-2">
-				Saved{" "}
-				{new Date(
-					article.savedAt
-				).toLocaleString()}
-				</p>
-			</Link>
+				<ArticleCard
+					key={article.id}
+					article={article}
+				/>
 			))}
 		</div>
 
