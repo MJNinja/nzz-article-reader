@@ -1,23 +1,33 @@
 const KEY = "bookmarks"
 
-export function getBookmarks(): string[] {
-	const raw = localStorage.getItem(KEY)
-	return raw ? JSON.parse(raw) : []
+export type BookmarkItem = {
+	id: string
+	savedAt: number
 }
 
+export function getBookmarks(): BookmarkItem[] {
+	const raw = localStorage.getItem(KEY)
+		return raw ? JSON.parse(raw) : []
+	}
+
 export function isBookmarked(id: string): boolean {
-	return getBookmarks().includes(id)
+	return getBookmarks().some((b) => b.id === id)
 }
 
 export function toggleBookmark(id: string) {
 	const current = getBookmarks()
 
-	let updated: string[]
+	const exists = current.find((bookmark) => bookmark.id === id)
 
-	if (current.includes(id)) {
-		updated = current.filter((x) => x !== id)
+	let updated: BookmarkItem[]
+
+	if (exists) {
+		updated = current.filter((bookmark) => bookmark.id !== id)
 	} else {
-		updated = [...current, id]
+		updated = [
+			...current,
+			{ id, savedAt: Date.now() },
+		]
 	}
 
 	localStorage.setItem(KEY, JSON.stringify(updated))
