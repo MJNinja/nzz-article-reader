@@ -1,25 +1,31 @@
+import { useEffect, useRef, useState } from "react"
 import { useFeed } from "@/features/feed/useFeed"
 import { useTopicsFromUrl } from "@/hooks/useTopicsFromUrl"
-
 import { ArticleCard } from "@/components/ArticleCard"
 import { ArticleCardSkeleton } from "@/components/ArticleCardSkeleton"
 import { Button } from "@/components/ui/button"
 
 const ALL_TOPICS = [
-  { id: "politik", label: "Politik" },
-  { id: "wirtschaft", label: "Wirtschaft" },
-  { id: "feuilleton", label: "Feuilleton" },
-  { id: "sport", label: "Sport" },
-  { id: "wissenschaft", label: "Wissenschaft" },
-  { id: "meinung", label: "Meinung" },
-  { id: "international", label: "International" },
-  { id: "zuerich", label: "Zürich" },
+	{ id: "politik", label: "Politik" },
+	{ id: "wirtschaft", label: "Wirtschaft" },
+	{ id: "feuilleton", label: "Feuilleton" },
+	{ id: "sport", label: "Sport" },
+	{ id: "wissenschaft", label: "Wissenschaft" },
+	{ id: "meinung", label: "Meinung" },
+	{ id: "international", label: "International" },
+	{ id: "zuerich", label: "Zürich" },
 ]
 
 function FeedPage() {
 	const { topicList, setTopics } = useTopicsFromUrl()
 
 	const {articles, hasMore, loadMore, isLoading, isLoadingMore, isError, retry} = useFeed(topicList)
+
+	const articleRefs = useRef<Record<string, HTMLAnchorElement | null>>({})
+
+	const prevCount = useRef(0)
+
+	const loadMoreTriggered = useRef(false)
 
 	function handleTopicToggle(topicId: string) {
 		let updatedTopics = [...topicList]
@@ -32,6 +38,38 @@ function FeedPage() {
 
 		setTopics(updatedTopics)
 	}
+
+	function handleLoadMore() {
+		loadMoreTriggered.current = true
+		prevCount.current = articles.length
+		loadMore()
+	}
+
+	useEffect(() => {
+		// only run if user clicked load more
+		if (!loadMoreTriggered.current) return
+
+		const previousLength = prevCount.current
+		const currentLength = articles.length
+
+		// wait until new batch actually arrives
+		if (currentLength <= previousLength) return
+
+		const firstNewArticle = articles[previousLength]
+
+		if (!firstNewArticle) return
+
+		const el = articleRefs.current[firstNewArticle.id]
+
+		if (el) {
+			requestAnimationFrame(() => {
+				el.focus()
+			})
+		}
+
+		// reset flag
+		loadMoreTriggered.current = false
+	}, [articles])
 
 	return (
 		<div className="max-w-2xl mx-auto p-4">
@@ -47,15 +85,15 @@ function FeedPage() {
 
 			return (
 				<button
-				key={topic.id}
-				onClick={() => handleTopicToggle(topic.id)}
-				className={`px-3 py-1 rounded border text-sm transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
-					active
-					? "bg-black text-white"
-					: "bg-white hover:bg-gray-100"
-				}`}
+					key={topic.id}
+					onClick={() => handleTopicToggle(topic.id)}
+					className={`
+						px-3 py-1 rounded border text-sm transition cursor-pointer
+						focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
+						${active ? "bg-black text-white" : "bg-white hover:bg-gray-100"}
+					`}
 				>
-				{topic.label}
+					{topic.label}
 				</button>
 			)
 			})}
@@ -64,35 +102,41 @@ function FeedPage() {
 		{/* ERROR */}
 		{isError && (
 			<div className="border rounded p-4 bg-red-50 mb-6">
-				<p className="text-red-600 mb-3">
-					Failed to load articles.
-				</p>
-				<Button onClick={() => retry()}>Retry</Button>
+			<p className="text-red-600 mb-3">
+				Failed to load articles.
+			</p>
+			<Button onClick={() => retry()}>Retry</Button>
 			</div>
 		)}
 
-		{/* SKELETON (initial OR topic change) */}
-		{(isLoading) && (
+		{/* SKELETON */}
+		{isLoading && (
 			<div className="space-y-4">
-				{Array.from({ length: 5 }).map((_, i) => (
-					<ArticleCardSkeleton key={i} />
-				))}
+			{Array.from({ length: 5 }).map((_, i) => (
+				<ArticleCardSkeleton key={i} />
+			))}
 			</div>
 		)}
 
 		{/* ARTICLES */}
 		{!isLoading && (
 			<div className="space-y-4">
-				{articles.map((article) => (
-					<ArticleCard key={article.id} article={article} />
-				))}
+			{articles.map((article, index) => (
+				<ArticleCard
+					key={article.id}
+					article={article}
+					ref={(el) => {
+						articleRefs.current[article.id] = el
+					}}
+				/>
+			))}
 			</div>
 		)}
 
 		{/* LOAD MORE */}
 		{hasMore && (
 			<div className="mt-8 flex justify-center">
-				<Button onClick={() => loadMore()} disabled={isLoadingMore}>
+				<Button onClick={handleLoadMore} disabled={isLoadingMore}>
 					{isLoadingMore ? "Loading..." : "Load more"}
 				</Button>
 			</div>
