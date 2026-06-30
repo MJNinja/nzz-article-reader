@@ -1,8 +1,9 @@
+import { forwardRef } from "react"
 import { Link } from "react-router"
 import type { Article } from "@/api/mockApi"
 import { usePrefetchArticle } from "@/features/articles/usePrefetchArticle"
 import { formatTime } from "@/utils/formatTime"
-import { forwardRef } from "react"
+import { isBookmarked } from "@/features/bookmarks/bookmarkStore"
 
 type Props = {
   article: Article
@@ -12,6 +13,8 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, Props>(
   ({ article }, ref) => {
     
 	const { prefetchArticle } = usePrefetchArticle()
+
+	const bookmarked = isBookmarked(article.id)
 	
 	return (
       <article>
@@ -39,8 +42,15 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, Props>(
 
           {/* PREMIUM BADGE */}
           {article.premium && (
-            <span className="text-xs font-semibold bg-black text-white px-2 py-1 rounded inline-block mb-2">
+            <span className="text-xs font-semibold bg-black text-white px-2 py-1 rounded inline-block mb-2 mr-2">
               Premium
+            </span>
+          )}
+
+		  {/* BOOKMARK BADGE */}
+          {bookmarked && (
+            <span className="text-xs font-semibold bg-yellow-200 text-yellow-800 px-2 py-1 rounded inline-block mb-2">
+              Bookmarked
             </span>
           )}
 
