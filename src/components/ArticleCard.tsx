@@ -1,5 +1,6 @@
 import { Link } from "react-router"
 import type { Article } from "@/api/mockApi"
+import { usePrefetchArticle } from "@/features/articles/usePrefetchArticle"
 import { formatTime } from "@/utils/formatTime"
 import { forwardRef } from "react"
 
@@ -9,11 +10,16 @@ type Props = {
 
 export const ArticleCard = forwardRef<HTMLAnchorElement, Props>(
   ({ article }, ref) => {
-    return (
+    
+	const { prefetchArticle } = usePrefetchArticle()
+	
+	return (
       <article>
         <Link
           ref={ref}
           to={`/article/${article.id}`}
+		  onMouseEnter={() => prefetchArticle(article.id)}
+		  onFocus={() => prefetchArticle(article.id)}
           className="
             block border rounded-lg p-4
             hover:bg-gray-50 transition

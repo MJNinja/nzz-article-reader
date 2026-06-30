@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { useFeed } from "@/features/feed/useFeed"
 import { useTopicsFromUrl } from "@/hooks/useTopicsFromUrl"
 import { ArticleCard } from "@/components/ArticleCard"
@@ -121,7 +121,7 @@ function FeedPage() {
 		{/* ARTICLES */}
 		{!isLoading && (
 			<div className="space-y-4">
-			{articles.map((article, index) => (
+			{articles.map((article) => (
 				<ArticleCard
 					key={article.id}
 					article={article}
