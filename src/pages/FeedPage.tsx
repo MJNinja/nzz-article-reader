@@ -97,7 +97,7 @@ function FeedPage() {
 							className={`
 								px-3 py-1 rounded border text-sm transition cursor-pointer
 								focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
-								${active ? "bg-black text-white" : "bg-white hover:bg-gray-100"}
+								${active ? "bg-primary text-primary-foreground" : "bg-background text-foreground hover:bg-muted"}
 							`}
 						>
 							{topic.label}

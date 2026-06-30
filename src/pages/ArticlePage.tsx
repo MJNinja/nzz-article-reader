@@ -54,12 +54,12 @@ function ArticlePage() {
 				</Link>
 
 				{/* TITLE */}
-				<h1 className="text-3xl font-bold mt-4">
+				<h1 className="text-3xl font-bold mt-4 text-foreground">
 					{article.title}
 				</h1>
 
 				{/* META */}
-				<p className="text-gray-500 mt-2">
+				<p className="text-muted-foreground mt-2">
 					{article.author}
 				</p>
 
@@ -74,27 +74,29 @@ function ArticlePage() {
 				)}
 
 				{/* LEAD */}
-				<p className="text-lg mt-4">
+				<p className="text-lg mt-4 text-foreground">
 					{article.lead}
 				</p>
 
 				{/* BODY */}
-				<div className="mt-6 whitespace-pre-line text-gray-800">
+				<div className="mt-6 whitespace-pre-line text-sm text-foreground">
 					{article.body}
 				</div>
 
 				{/* ACTIONS */}
 				<div className="flex gap-3 mt-6">
 					<button
-					onClick={handleBookmark}
-					className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+						onClick={handleBookmark}
+						className="border border-border px-3 py-1 rounded bg-background hover:bg-muted cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
+						"
 					>
 						{bookmarked ? "Remove Bookmark" : "Bookmark"}
 					</button>
 
 					<button
-					onClick={handleShare}
-					className="border px-3 py-1 rounded transition hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+						onClick={handleShare}
+						className=" border border-border px-3 py-1 rounded bg-background hover:bg-muted cursor-pointer transition focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2
+						"
 					>
 						Share
 					</button>
@@ -102,28 +104,25 @@ function ArticlePage() {
 
 				{/* RELATED ARTICLES */}
 				<div className="mt-10">
-					<h2 className="text-lg font-semibold mb-3">
+					<h2 className="text-lg font-semibold mb-3 text-foreground">
 						Related Articles
 					</h2>
 
 					{relatedLoading && (
-						<div className="text-sm text-gray-500">
-						Loading related articles...
+						<div className="text-sm text-muted-foreground">
+							Loading related articles...
 						</div>
 					)}
 
 					{!relatedLoading && related?.length === 0 && (
-						<div className="text-sm text-gray-500">
-						No related articles found
+						<div className="text-sm text-muted-foreground">
+							No related articles found
 						</div>
 					)}
 
 					<div className="space-y-3">
 						{related?.map((article) => (
-							<ArticleCard
-								key={article.id}
-								article={article}
-							/>
+							<ArticleCard key={article.id} article={article} />
 						))}
 					</div>
 				</div>

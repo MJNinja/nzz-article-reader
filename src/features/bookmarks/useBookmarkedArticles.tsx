@@ -9,7 +9,6 @@ export function useBookmarkedArticles() {
 		queryFn: async () => {
 			const bookmarks = getBookmarks()
 
-			// Get AI to explain this code (promises)
 			const articles = await Promise.all(
 				bookmarks.map(async (bookmark) => {
 					const article = await fetchArticle(bookmark.id)
