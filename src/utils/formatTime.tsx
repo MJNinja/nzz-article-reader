@@ -1,6 +1,5 @@
-export function formatTime(dateString: string) {
+export function formatTime(dateString: string, now = new Date()) {
 	const date = new Date(dateString)
-	const now = new Date()
 
 	const diffInMs = now.getTime() - date.getTime()
 	const diffInMinutes = Math.floor(diffInMs / 1000 / 60)
