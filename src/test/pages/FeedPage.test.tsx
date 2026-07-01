@@ -4,10 +4,11 @@ import { describe, it, expect, vi, beforeEach } from "vitest"
 import { MemoryRouter } from "react-router"
 import { renderWithProviders } from "@/test/test-utils"
 import FeedPage from "@/pages/FeedPage"
+import type { Article } from "@/api/mockApi"
 
 const loadMoreMock = vi.fn()
 
-const initialArticlesState = [
+const initialArticlesState: Article[] = [
 	{
 		id: "1",
 		title: "Article 1",

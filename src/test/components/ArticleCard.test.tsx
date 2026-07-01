@@ -3,8 +3,9 @@ import { describe, it, expect } from "vitest"
 import { MemoryRouter } from "react-router"
 import { ArticleCard } from "@/components/ArticleCard"
 import { renderWithProviders } from "@/test/test-utils"
+import type { Article } from "@/api/mockApi"
 
-const mockArticle = {
+const mockArticle: Article = {
 	id: "1",
 	title: "Breaking News",
 	lead: "This is the lead text",
@@ -23,7 +24,7 @@ describe("ArticleCard", () => {
 	it("renders article content correctly", () => {
 		renderWithProviders(
 			<MemoryRouter>
-				<ArticleCard article={mockArticle as any} />
+				<ArticleCard article={mockArticle} />
 			</MemoryRouter>
 		)
 
