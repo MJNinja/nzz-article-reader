@@ -18,7 +18,11 @@ function SearchPage() {
 		setQuery(value)
 	}
 
-	const {data: articles, isLoading, isError} = useSearch(debouncedQuery)
+	const {data: articles = [], isLoading, isError} = useSearch(debouncedQuery)
+
+	const normalizedQuery = debouncedQuery.trim()
+	const hasQuery = normalizedQuery.length > 0
+	const hasResults = articles.length > 0
 
 	const pageTitle = "Article Search | NZZ Reader"
 	const pageDescription = "Search through the articles from NZZ."
@@ -26,7 +30,7 @@ function SearchPage() {
 	return (
 		<>
 			<title>{pageTitle}</title>
-    		<meta name="description" content={pageDescription} />
+			<meta name="description" content={pageDescription} />
 
 			<div className="max-w-2xl mx-auto p-4">
 
@@ -39,6 +43,7 @@ function SearchPage() {
 				<label className="sr-only" htmlFor="search">
 					Search articles
 				</label>
+
 				<input
 					id="search"
 					value={inputValue}
@@ -57,20 +62,30 @@ function SearchPage() {
 					<ErrorState text="Something went wrong." />
 				)}
 
-				{/* EMPTY STATE */}
-				{!isLoading && !isError && debouncedQuery && articles?.length === 0 && (
-					<div className="text-gray-500">
-						No articles found for "{debouncedQuery}"
+				{/* EMPTY STATE (IMPORTANT FIX) */}
+				{!isLoading &&
+					!isError &&
+					hasQuery &&
+					!hasResults && (
+						<div className="text-muted-foreground">
+							No articles found for "{normalizedQuery}"
+						</div>
+					)}
+
+				{/* INITIAL STATE (nothing typed) */}
+				{!hasQuery && !isLoading && (
+					<div className="text-muted-foreground">
+						Start typing to search articles.
 					</div>
 				)}
 
 				{/* RESULTS */}
-				<div className="space-y-4">
-					{articles?.map((article) => (
-					<ArticleCard
-						key={article.id}
-						article={article}
-					/>
+				<div className="space-y-4 mt-4">
+					{articles.map((article) => (
+						<ArticleCard
+							key={article.id}
+							article={article}
+						/>
 					))}
 				</div>
 

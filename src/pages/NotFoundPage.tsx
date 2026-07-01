@@ -1,5 +1,3 @@
-import React from 'react'
-
 function NotFoundPage() {
 	const pageTitle = "404 Page Not Found | NZZ Reader"
 	const pageDescription = "The page you were looking for could not be found."

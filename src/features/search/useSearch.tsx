@@ -2,17 +2,22 @@ import { useQuery } from "@tanstack/react-query"
 import { fetchFeed } from "@/api/mockApi"
 
 export function useSearch(query: string) {
+	const normalizedQuery = query.trim()
+
 	return useQuery({
-		queryKey: ["search", query],
+		queryKey: ["search", normalizedQuery],
 
 		queryFn: async () => {
 			const result = await fetchFeed({
-				q: query,
+				q: normalizedQuery,
 			})
 
-			return result.data
+			return [...result.data].sort((a, b) =>
+				new Date(b.publishedAt).getTime() -
+				new Date(a.publishedAt).getTime()
+			)
 		},
 
-		enabled: query.trim().length > 0,
+		enabled: normalizedQuery.length > 0
 	})
 }
