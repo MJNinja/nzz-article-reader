@@ -89,7 +89,7 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, Props>(
 						{article.topics.map((topic) => (
 							<span
 								key={topic.id}
-								className="text-xs bg-muted text-muted-foreground px-2 py-1 rounded"
+								className="text-xs bg-muted text-foreground px-2 py-1 rounded"
 							>
 								{topic.name}
 							</span>
