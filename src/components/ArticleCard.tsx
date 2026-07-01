@@ -38,6 +38,8 @@ export const ArticleCard = forwardRef<HTMLAnchorElement, Props>(
 					src={article.imageUrl}
 					alt={article.title}
 					loading="lazy"
+					decoding="async"
+              		fetchPriority="auto"
 					className="w-full h-48 object-cover rounded mb-3"
 					/>
 				)}

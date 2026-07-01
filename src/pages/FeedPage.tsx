@@ -45,6 +45,22 @@ function FeedPage() {
 		loadMore()
 	}
 
+	// Prefetch images
+	useEffect(() => {
+		if (!articles.length) return
+
+		// Only preload "nearby" images (not all at once)
+		const nextBatch = articles.slice(0, 6)
+
+		nextBatch.forEach((article) => {
+			if (!article.imageUrl) return
+
+			const img = new Image()
+			img.src = article.imageUrl
+		})
+	}, [articles])
+
+	// Clicking load more
 	useEffect(() => {
 		// only run if user clicked load more
 		if (!loadMoreTriggered.current) return

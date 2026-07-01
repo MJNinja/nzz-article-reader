@@ -18,5 +18,3 @@ export function usePrefetchArticle() {
 
 	return { prefetchArticle }
 }
-
-

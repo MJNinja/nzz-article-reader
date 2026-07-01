@@ -23,6 +23,10 @@ export function useFeed(topics: string[]) {
 		getNextPageParam: (lastPage) => {
 			return lastPage.meta.nextPage
 		},
+
+		staleTime: 1000 * 60 * 2,
+
+		gcTime: 1000 * 60 * 10,
 	})
 
 	let articles: Article[] = []
