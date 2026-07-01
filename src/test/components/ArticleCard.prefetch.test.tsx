@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { describe, it, expect, vi } from "vitest"
+import { describe, it, expect, vi, beforeEach } from "vitest"
 import { ArticleCard } from "@/components/ArticleCard"
 import type { Article } from "@/api/mockApi"
 import { renderWithProviders } from "@/test/test-utils"
@@ -27,6 +27,10 @@ const article: Article = {
 }
 
 describe("ArticleCard - prefetch behavior", () => {
+	beforeEach(() => {
+		prefetchMock.mockClear()
+	})
+
 	it("triggers prefetch on hover", async () => {
 		const user = userEvent.setup()
 
@@ -39,6 +43,24 @@ describe("ArticleCard - prefetch behavior", () => {
 		const link = screen.getByRole("link")
 
 		await user.hover(link)
+
+		expect(prefetchMock).toHaveBeenCalledTimes(1)
+		expect(prefetchMock).toHaveBeenCalledWith("1")
+	})
+
+	it("triggers prefetch on focus (keyboard accessibility)", async () => {
+		const user = userEvent.setup()
+
+		renderWithProviders(
+			<MemoryRouter>
+				<ArticleCard article={article} />
+			</MemoryRouter>
+		)
+
+		const link = screen.getByRole("link")
+
+		await user.tab()
+		expect(link).toHaveFocus()
 
 		expect(prefetchMock).toHaveBeenCalledTimes(1)
 		expect(prefetchMock).toHaveBeenCalledWith("1")
