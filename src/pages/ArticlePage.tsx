@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useParams, Link } from "react-router"
 import { ArticleCard } from "@/components/ArticleCard"
 import { useArticle } from "@/features/articles/useArticle"
@@ -18,6 +18,11 @@ function ArticlePage() {
 	const topicIds = article?.topics.map((topic) => topic.id) ?? []
 
 	const {data: related, isLoading: relatedLoading} = useRelatedArticles(topicIds, article?.id ?? "")
+
+	// Always scroll to top when entering article page
+	useEffect(() => {
+		window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+	}, [])
 
 	if (isLoading) {
 		return <LoadingState text="Loading article..." />

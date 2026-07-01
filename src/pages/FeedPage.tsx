@@ -24,8 +24,10 @@ function FeedPage() {
 	const articleRefs = useRef<Record<string, HTMLAnchorElement | null>>({})
 
 	const prevCount = useRef(0)
-
 	const loadMoreTriggered = useRef(false)
+
+	const isRestoringFromBack = useRef(false)
+	const hasRestoredFocus = useRef(false)
 
 	function handleTopicToggle(topicId: string) {
 		let updatedTopics = [...topicList]
@@ -64,6 +66,7 @@ function FeedPage() {
 	useEffect(() => {
 		// only run if user clicked load more
 		if (!loadMoreTriggered.current) return
+		if (isRestoringFromBack.current) return
 
 		const previousLength = prevCount.current
 		const currentLength = articles.length
@@ -73,7 +76,7 @@ function FeedPage() {
 
 		const firstNewArticle = articles[previousLength]
 
-		if (!firstNewArticle) return
+		//if (!firstNewArticle) return
 
 		const el = articleRefs.current[firstNewArticle.id]
 
@@ -87,13 +90,40 @@ function FeedPage() {
 		loadMoreTriggered.current = false
 	}, [articles])
 
+	// -------------------------------
+	// BACK NAVIGATION FOCUS RESTORE
+	// -------------------------------
+	useEffect(() => {
+		const returning = sessionStorage.getItem("feed:returningFromArticle")
+		const lastId = sessionStorage.getItem("feed:lastFocusedId")
+
+		if (!returning || !lastId) return
+		if (hasRestoredFocus.current) return
+
+		const el = articleRefs.current[lastId]
+
+		if (el) {
+			requestAnimationFrame(() => {
+				el.focus()
+			})
+			hasRestoredFocus.current = true
+		}
+
+		sessionStorage.removeItem("feed:returningFromArticle")
+
+		// reset guard after render settles
+		setTimeout(() => {
+			isRestoringFromBack.current = false
+		}, 0)
+	}, [articles])
+
 	const pageTitle = "NZZ Reader | Latest Articles"
 	const pageDescription = "Browse the latest articles from NZZ including politics, sport, economy and more."
 
 	return (
 		<>
 			<title>{pageTitle}</title>
-    		<meta name="description" content={pageDescription} />
+			<meta name="description" content={pageDescription} />
 
 			<div className="max-w-2xl mx-auto p-4">
 
@@ -104,62 +134,71 @@ function FeedPage() {
 				{/* TOPICS */}
 				<div className="flex flex-wrap gap-2 mb-6">
 					{ALL_TOPICS.map((topic) => {
-					const active = topicList.includes(topic.id)
+						const active = topicList.includes(topic.id)
 
-					return (
-						<button
-							key={topic.id}
-							onClick={() => handleTopicToggle(topic.id)}
-							className={`
-								px-3 py-1 rounded border text-sm transition cursor-pointer
-								focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
-								${active ? "bg-primary text-primary-foreground" : "bg-background text-foreground hover:bg-muted"}
-							`}
-						>
-							{topic.label}
-						</button>
-					)
+						return (
+							<button
+								key={topic.id}
+								onClick={() => handleTopicToggle(topic.id)}
+								className={`
+									px-3 py-1 rounded border text-sm transition cursor-pointer
+									focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
+									${active
+										? "bg-primary text-primary-foreground"
+										: "bg-background text-foreground hover:bg-muted"}
+								`}
+							>
+								{topic.label}
+							</button>
+						)
 					})}
 				</div>
 
 				{/* ERROR */}
 				{isError && (
 					<div className="border rounded p-4 bg-red-50 mb-6">
-					<p className="text-red-600 mb-3">
-						Failed to load articles.
-					</p>
-					<Button onClick={() => retry()}>Retry</Button>
+						<p className="text-red-600 mb-3">
+							Failed to load articles.
+						</p>
+						<Button onClick={() => retry()}>Retry</Button>
 					</div>
 				)}
 
 				{/* SKELETON */}
 				{isLoading && (
 					<div className="space-y-4">
-					{Array.from({ length: 5 }).map((_, i) => (
-						<ArticleCardSkeleton key={i} />
-					))}
+						{Array.from({ length: 5 }).map((_, i) => (
+							<ArticleCardSkeleton key={i} />
+						))}
 					</div>
 				)}
 
 				{/* ARTICLES */}
 				{!isLoading && (
 					<div className="space-y-4">
-					{articles.map((article) => (
-						<ArticleCard
-							key={article.id}
-							article={article}
-							ref={(el) => {
-								articleRefs.current[article.id] = el
-							}}
-						/>
-					))}
+						{articles.map((article) => (
+							<ArticleCard
+								key={article.id}
+								article={article}
+								ref={(el) => {
+									articleRefs.current[article.id] = el
+								}}
+								onClick={() => {
+									sessionStorage.setItem("feed:lastFocusedId", article.id)
+									sessionStorage.setItem("feed:returningFromArticle", "true")
+								}}
+							/>
+						))}
 					</div>
 				)}
 
 				{/* LOAD MORE */}
 				{hasMore && (
 					<div className="mt-8 flex justify-center">
-						<Button onClick={handleLoadMore} disabled={isLoadingMore}>
+						<Button
+							onClick={handleLoadMore}
+							disabled={isLoadingMore}
+						>
 							{isLoadingMore ? "Loading..." : "Load more"}
 						</Button>
 					</div>
